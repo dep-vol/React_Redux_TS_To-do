@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useState} from 'react';
 import './App.css';
 import Header from "../Header/Header";
 import ToDos from "../ToDoList/ToDoListContainer";
@@ -7,7 +8,7 @@ import {store} from "../../store/store";
 import {userLogin} from "../../store/actions/user";
 import Loader from "../Loader/Loader";
 
-function App() {
+function App(){
     const [isLoading, setIsLoading] = useState(true);
 
     //PSEUDO LOGIN

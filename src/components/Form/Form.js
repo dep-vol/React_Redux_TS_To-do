@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./Form.module.scss";
+import style from "./Form.module.css";
 import Button from "../Button/Button";
 
 const Form = () => {

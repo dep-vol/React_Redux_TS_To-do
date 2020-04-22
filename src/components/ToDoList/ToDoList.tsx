@@ -1,9 +1,17 @@
-import style from "./ToDoList.module.scss";
+import style from "./ToDoList.module.css";
 import React from "react";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
+import {ToDo} from "../../Types/types";
 
-const ToDoList = ({ todos, deleteToDo, completeToDo, uncompleteToDo }) => {
+type Props = {
+    todos: ToDo[]
+    deleteToDo: (id: number)=> void
+    completeToDo:(id: number)=> void
+    uncompleteToDo:(id: number)=> void
+}
+
+const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncompleteToDo }) => {
     return (
         <div className={style.todos}>
             <h1 className={style.todos__head}>
@@ -25,21 +33,21 @@ const ToDoList = ({ todos, deleteToDo, completeToDo, uncompleteToDo }) => {
                         <div>
                             <Button
                                 theme={'primary'}
-                                callback={{func:completeToDo, params:[el.id]}}
+                                callback={()=>completeToDo(el.id)}
                                 disabled={el.completed}
                             >
                                 check
                             </Button>
                             <Button
                                 theme={'secondary'}
-                                callback={{func:uncompleteToDo, params:[el.id]}}
+                                callback={()=>uncompleteToDo(el.id)}
                                 disabled={!el.completed}
                             >
                                 uncheck
                             </Button>
                             <Button
                                 theme={'danger'}
-                                callback={{func:deleteToDo, params:[el.id]}}
+                                callback={()=>deleteToDo(el.id)}
                             >
                                 delete
                             </Button>

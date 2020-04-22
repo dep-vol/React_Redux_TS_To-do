@@ -1,5 +1,4 @@
 import {
-    ADD_TODO,
     COMPLETE_TODO,
     DELETE_TODO,
     LOAD_TODO_ERROR,
@@ -21,9 +20,7 @@ const todoReducer = (state=initialState, action) => {
         case LOAD_TODO_SUCCESS: {
             return {...state, todos: action.payload}
         }
-        case ADD_TODO: {
-            return {...state, todos:[...state.todos, makeToDo(state,action.todo)]}
-        }
+
         case DELETE_TODO: {
             const newList = state.todos.filter((el) => el.id !== action.id);
             return { ...state, todos: newList}

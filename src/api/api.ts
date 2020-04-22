@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ToDo} from "../Types/types";
 
 const api = {
     //LOGIN PSEUDO
@@ -8,11 +9,12 @@ const api = {
       })
     },
 
-    loadData(userId) {
-        return axios.get(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
+    loadData(userId:number){
+        return axios.get<ToDo[]>(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
             .then(response => response.data)
-            .catch(error => console.log(error))
     }
 };
+
+
 
 export default api;
