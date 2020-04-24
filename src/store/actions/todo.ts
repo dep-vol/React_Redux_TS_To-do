@@ -1,36 +1,43 @@
-import {COMPLETE_TODO, DELETE_TODO, LOAD_TODO_LIST, LOAD_TODO_SUCCESS, UNCOMPLETE_TODO} from "./action-types";
 import api from "../../api/api";
 import {ToDo} from "../../Types/types";
-import {Dispatch} from "redux";
+import {Action, Dispatch} from "redux";
+import { ThunkAction } from "redux-thunk";
+import {RootState} from "../store";
 
+export const todoActions = {
+    loadTodosStatus : (payload: boolean) => {
+        return {type: "LOAD_TODO_LIST", payload} as const
+    },
 
+    loadToDoListSuccess : (payload: ToDo[]) => {
+        return {type: "LOAD_TODO_SUCCESS", payload} as const
+    },
 
-export const loadTodosStatus = (payload:boolean) => {
-   return { type: LOAD_TODO_LIST, payload }
+    deleteToDO : (id: number) => {
+        return {type: "DELETE_TODO", id} as const
+    },
+
+    completeToDo : (id: number) => {
+        return {type: "COMPLETE_TODO", id} as const
+    },
+
+    uncompleteToDo : (id: number) => {
+        return {type: "UNCOMPLETE_TODO", id} as const
+    },
+    addToDo : (title: string, userId:number) => {
+        return {type: "ADD_TODO", title, userId} as const
+    }
 };
 
-export const loadToDoListSuccess = (payload:ToDo[]) => {
-    return { type: LOAD_TODO_SUCCESS, payload}
-};
 
-export const fetchToDoList = (userId:number) => (dispatch:Dispatch) => {
-    dispatch(loadTodosStatus(true));
+
+export const fetchToDoList = (userId:number): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch:Dispatch) => {
+    dispatch(todoActions.loadTodosStatus(true));
     api.loadData(userId)
         .then ((data) => {
-            dispatch(loadTodosStatus(false));
-            dispatch(loadToDoListSuccess(data));
+            dispatch(todoActions.loadTodosStatus(false));
+            dispatch(todoActions.loadToDoListSuccess(data));
         })
 };
 
 
-export const deleteToDO = (id:number) => {
-    return { type: DELETE_TODO, id }
-};
-
-export const completeToDo = (id:number) => {
-    return { type: COMPLETE_TODO, id}
-};
-
-export const uncompleteToDo = (id:number) => {
-    return { type: UNCOMPLETE_TODO, id}
-};

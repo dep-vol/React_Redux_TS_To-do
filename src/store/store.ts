@@ -4,13 +4,16 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import userReducer from "./reducers/userReducer";
 
-const reducer = combineReducers({
+
+const rootReducer = combineReducers({
     todos:todoReducer,
     user:userReducer
 });
 
 
-export const store = createStore(reducer, composeWithDevTools(
+export const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk)
 ));
+
+export type RootState = ReturnType<typeof rootReducer>;
 

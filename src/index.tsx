@@ -5,13 +5,20 @@ import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {store} from "./store/store";
-
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Authorization from "./components/Authorization/Authorization";
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store = {store}>
-            <App/>
+            <Router>
+                <Switch>
+                    <Route path="/" component={Authorization} exact/>
+                    <Route path="/App" component={App} />
+                </Switch>
+            </Router>
+
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
