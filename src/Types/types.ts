@@ -15,5 +15,4 @@ export type todoState = {
 
 export type userState = {
     userId: number
-    isLogged: boolean
 }

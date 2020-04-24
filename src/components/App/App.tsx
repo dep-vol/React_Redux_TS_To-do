@@ -11,6 +11,6 @@ const App = () =>{
             <ToDos/>
         </div>
     );
-}
+};
 
 export default App;

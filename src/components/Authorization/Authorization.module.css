@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.select {
+    margin: 0 10px 10px;
+}

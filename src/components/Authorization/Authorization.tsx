@@ -1,25 +1,18 @@
 import React, {FormEvent, useState} from "react";
-import {RootState} from "../../store/store";
 import {Dispatch} from "redux";
 import {actions} from "../../store/actions/actions";
 import {connect} from "react-redux";
 import Button from "../Button/Button";
 import { RouteComponentProps } from 'react-router-dom';
 import {withRouter} from "react-router";
+import style from "./Authorization.module.css";
 
-type StateProps = {
-    isLogged: boolean
-}
 type DispatchProps = {
     userLogin: (id:number)=>void
 }
-type Props = StateProps & DispatchProps & RouteComponentProps
+type Props = DispatchProps & RouteComponentProps
 
-const mapStateToProps = (state:RootState):StateProps => {
-    return {
-        isLogged:state.user.isLogged
-    }
-};
+
 const mapDispatchToProps = (dispatch:Dispatch):DispatchProps => {
     return {
         userLogin: (id) => dispatch(actions.userLogin(id))
@@ -28,28 +21,31 @@ const mapDispatchToProps = (dispatch:Dispatch):DispatchProps => {
 
 
 
-const Authorization:React.FC<Props> = ({userLogin, isLogged, history})=> {
-    const [value, setValue] = useState('');
+const Authorization:React.FC<Props> = ({userLogin, history})=> {
+    const [value, setValue] = useState('1');
     const handleChange = (e:FormEvent<HTMLSelectElement>) => {
         setValue(e.currentTarget.value);
     };
+    const onClick = () => {
+       userLogin(+value);
+        history.push('/App')
+    };
 
-    if(isLogged) history.push('/App');
 
   return (
-      <div>
+      <div className={style.container}>
           <label>
               Выберите пользователя:
-              <select value={value} onChange={handleChange}>
+              <select className={style.select} value={value} onChange={handleChange}>
                   <option value="1">Alex</option>
                   <option value="2">Svetlana</option>
                   <option value="3">Evgeniy</option>
                   <option value="4">Elena</option>
               </select>
           </label>
-          <Button theme={'primary'} callback={()=>userLogin(+value)}>Show To-Do List</Button>
+          <Button theme={'primary'} callback={onClick}>Show To-Do List</Button>
       </div>
   )  
 };
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Authorization));
+export default withRouter(connect(null,mapDispatchToProps)(Authorization));
