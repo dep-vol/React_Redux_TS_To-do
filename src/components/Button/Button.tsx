@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import style from "./Button.module.css";
 
 type indexStyle = keyof typeof style;
@@ -11,11 +11,10 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ theme,callback,disabled, ...props }) => {
     const content = props.children;
-    const memoizedCallback = useCallback(()=>callback(),[callback]);
 
     return (
         <button className={`${style.btn} ${style[theme]}`}
-                onClick={memoizedCallback}
+                onClick={callback}
                 disabled={disabled}
         >
             {content}

@@ -2,14 +2,14 @@ import style from "./ToDoList.module.css";
 import React from "react";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
-import {ToDo} from "../../Types/types";
+import {popupAct, ToDo} from "../../Types/types";
 
 type Props = {
     todos: ToDo[]
     deleteToDo: (id: number)=> void
     completeToDo:(id: number)=> void
     uncompleteToDo:(id: number)=> void
-    showPopup:(message:string)=> void
+    showPopup:(message:string,popupAct:popupAct)=> void
 }
 
 const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncompleteToDo, showPopup }) => {
@@ -48,7 +48,7 @@ const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncomplete
                             </Button>
                             <Button
                                 theme={'danger'}
-                                callback={()=>deleteToDo(el.id)}
+                                callback={()=>showPopup("Are you shure?", {type:"DELETE",payload:el.id})}
                             >
                                 delete
                             </Button>

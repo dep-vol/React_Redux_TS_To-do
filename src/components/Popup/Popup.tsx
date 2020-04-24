@@ -2,16 +2,19 @@ import React from "react";
 import style from "./Popup.module.css";
 import {connect} from "react-redux";
 import {RootState} from "../../store/store";
-import {Dispatch} from "redux";
-import {actions} from "../../store/actions/actions";
+import {Action} from "redux";
+import {popupAct} from "../../Types/types";
+import {onConfirmPopup} from "../../store/actions/popup";
+import {ThunkDispatch} from "redux-thunk";
 
 type StateProps = {
     message:string
     confirm:boolean
     isShown:boolean
+    popupAct:popupAct
 }
 type DispatchProps = {
-    onConfirmToggle:(confirm:boolean)=>void
+    onConfirm:(popupAct:popupAct)=>void
 }
 type Props = StateProps & DispatchProps
 
@@ -19,19 +22,23 @@ const mapStateToProps = (state:RootState):StateProps => {
     return {
         message:state.popup.message,
         confirm:state.popup.confirm,
-        isShown:state.popup.isShown
+        isShown:state.popup.isShown,
+        popupAct:state.popup.popupAct
     }
 };
-const mapDispatchToProps = (dispatch:Dispatch):DispatchProps => {
+const mapDispatchToProps = (dispatch:ThunkDispatch<RootState,unknown,Action>):DispatchProps => {
     return {
-        onConfirmToggle:(confirm)=>dispatch(actions.confirmPopup(confirm))
+        onConfirm:(popupAct)=>dispatch(onConfirmPopup(popupAct))
     }
 };
 
-const Popup:React.FC<Props> = ({isShown, message, confirm,onConfirmToggle}) => {
-   return (
-        <div>
+const Popup:React.FC<Props> = ({isShown, message, popupAct,onConfirm}) => {
+   const containerVisibility = !isShown ? style.show : style.hide;
+    return (
+        <div className={containerVisibility}>
             {message}
+            <button onClick={()=>onConfirm(popupAct)}>OK</button>
+            <button>CANCEL</button>
         </div>
     )
 }
