@@ -3,11 +3,13 @@ import todoReducer from "./reducers/todoReducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import userReducer from "./reducers/userReducer";
+import {popupReducer} from "./reducers/popupReducer";
 
 
 const rootReducer = combineReducers({
     todos:todoReducer,
-    user:userReducer
+    user:userReducer,
+    popup:popupReducer
 });
 
 

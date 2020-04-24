@@ -20,13 +20,14 @@ type dispatchProps = {
     deleteToDo: (toDoId:number) => void
     completeToDo: (toDoId:number) => void
     uncompleteToDo: (toDoId:number) => void
+    showPopup: (message:string) => void
 }
 
 type Props = stateProps & dispatchProps;
 
 
 const ToDoListContainer:React.FC<Props> = (props) => {
-    const {load, userId, isLoading, todos, deleteToDo, completeToDo, uncompleteToDo} = props;
+    const {load, userId, isLoading, todos, deleteToDo, completeToDo, uncompleteToDo, showPopup} = props;
 
     useEffect(() => {
         load(userId);
@@ -38,6 +39,7 @@ const ToDoListContainer:React.FC<Props> = (props) => {
                             deleteToDo={deleteToDo}
                             completeToDo={completeToDo}
                             uncompleteToDo={uncompleteToDo}
+                            showPopup={showPopup}
                         />
 };
 
@@ -56,7 +58,8 @@ const mapDispatchToProps = (dispatch:ThunkDispatch<RootState,unknown,Action>):di
         load: (userId) => dispatch(fetchToDoList(userId)),
         deleteToDo: (toDoId) => dispatch(actions.deleteToDO(toDoId)),
         completeToDo: (toDoId) => dispatch(actions.completeToDo(toDoId)),
-        uncompleteToDo: (toDoId) => dispatch(actions.uncompleteToDo(toDoId))
+        uncompleteToDo: (toDoId) => dispatch(actions.uncompleteToDo(toDoId)),
+        showPopup: (message) => dispatch(actions.showPopup(message))
     }
 };
 

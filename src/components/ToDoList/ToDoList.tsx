@@ -9,9 +9,10 @@ type Props = {
     deleteToDo: (id: number)=> void
     completeToDo:(id: number)=> void
     uncompleteToDo:(id: number)=> void
+    showPopup:(message:string)=> void
 }
 
-const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncompleteToDo }) => {
+const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncompleteToDo, showPopup }) => {
     return (
         <div className={style.todos}>
             <h1 className={style.todos__head}>

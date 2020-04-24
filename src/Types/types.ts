@@ -16,3 +16,9 @@ export type todoState = {
 export type userState = {
     userId: number
 }
+
+export type popupState = {
+    message:string
+    confirm: boolean
+    isShown:boolean
+}
