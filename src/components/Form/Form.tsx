@@ -30,13 +30,16 @@ const mapDispatchToProps = (dispatch:Dispatch):mapDispatch => {
 
 const Form:React.FC<Props> = ({userId,addToDo}) => {
     const[title,setTitle] = useState('');
+    const[disabled,setDisabled] = useState(true);
     const onChangeTitle = (e:React.FormEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
+        let titleContent = e.currentTarget.value;
+        titleContent!=='' ? setDisabled(false) : setDisabled(true);
+        setTitle(titleContent)
     };
     return (
         <div className={style.form}>
-            <input className={style.input} type="text" value={title} onChange={onChangeTitle}/>
-            <Button theme={'primary'} callback={()=>addToDo(title,userId)}>Add To-do</Button>
+            <input className={`${style.input} ${disabled ? style.disabled : ''}`} placeholder="Type To-Do:" type="text" value={title} onChange={onChangeTitle}/>
+            <Button theme={'primary'} callback={()=>addToDo(title,userId)} disabled={disabled}>Add To-do</Button>
         </div>
     )
 };

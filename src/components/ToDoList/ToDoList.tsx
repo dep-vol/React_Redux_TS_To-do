@@ -12,7 +12,7 @@ type Props = {
     showPopup:(message:string,popupAct:popupAct)=> void
 }
 
-const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncompleteToDo, showPopup }) => {
+const ToDoList: React.FC<Props> = ({ todos, completeToDo, uncompleteToDo, showPopup }) => {
     return (
         <div className={style.todos}>
             <h1 className={style.todos__head}>
@@ -48,7 +48,7 @@ const ToDoList: React.FC<Props> = ({ todos, deleteToDo, completeToDo, uncomplete
                             </Button>
                             <Button
                                 theme={'danger'}
-                                callback={()=>showPopup("Are you shure?", {type:"DELETE",payload:el.id})}
+                                callback={()=>showPopup("Are you sure?", {type:"DELETE",payload:el.id})}
                             >
                                 delete
                             </Button>

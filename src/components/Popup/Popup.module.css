@@ -10,4 +10,9 @@
     bottom: 0;
     right: 0;
     margin: 20px;
+    padding: 20px;
+
+    background: #282c34c2;
+    border-radius: 5px;
+
 }

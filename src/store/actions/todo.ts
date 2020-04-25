@@ -34,10 +34,8 @@ export const todoActions = {
 export const fetchToDoList = (userId:number): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch:Dispatch) => {
     dispatch(todoActions.loadTodosStatus(true));
     api.loadData(userId)
-        .then ((data) => {
-            dispatch(todoActions.loadTodosStatus(false));
-            dispatch(todoActions.loadToDoListSuccess(data));
-        })
+        .then ((data) => {dispatch(todoActions.loadToDoListSuccess(data));})
+        .then (()=>dispatch(todoActions.loadTodosStatus(false)))
 };
 
 

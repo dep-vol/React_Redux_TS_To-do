@@ -1,13 +1,13 @@
-import React, {useEffect} from "react";
+import React, {useEffect, Suspense} from "react";
 import {connect} from "react-redux";
 import { fetchToDoList } from "../../store/actions/todo";
 import {actions} from "../../store/actions/actions";
-import ToDoList from "./ToDoList";
 import Loader from "../Loader/Loader";
 import {ToDo, popupAct} from "../../Types/types";
 import {RootState} from "../../store/store";
 import  {Action} from "redux";
 import {ThunkDispatch} from "redux-thunk";
+const ToDoList = React.lazy(()=> import("./ToDoList"));
 
 
 type stateProps = {
@@ -34,13 +34,15 @@ const ToDoListContainer:React.FC<Props> = (props) => {
     },[load, userId]);
 
     return isLoading ?  <Loader/> :
-                        <ToDoList
+                        <Suspense fallback={<Loader/>}>
+                            <ToDoList
                             todos={todos}
                             deleteToDo={deleteToDo}
                             completeToDo={completeToDo}
                             uncompleteToDo={uncompleteToDo}
-                            showPopup={showPopup}
-                        />
+                            showPopup={showPopup}/>
+                        </Suspense>
+
 };
 
 

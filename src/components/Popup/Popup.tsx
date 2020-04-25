@@ -6,6 +6,8 @@ import {Action} from "redux";
 import {popupAct} from "../../Types/types";
 import {onConfirmPopup} from "../../store/actions/popup";
 import {ThunkDispatch} from "redux-thunk";
+import Button from "../Button/Button";
+import {actions} from "../../store/actions/actions";
 
 type StateProps = {
     message:string
@@ -15,6 +17,7 @@ type StateProps = {
 }
 type DispatchProps = {
     onConfirm:(popupAct:popupAct)=>void
+    onCancel:(confirm:boolean)=>void
 }
 type Props = StateProps & DispatchProps
 
@@ -28,19 +31,20 @@ const mapStateToProps = (state:RootState):StateProps => {
 };
 const mapDispatchToProps = (dispatch:ThunkDispatch<RootState,unknown,Action>):DispatchProps => {
     return {
-        onConfirm:(popupAct)=>dispatch(onConfirmPopup(popupAct))
+        onConfirm:(popupAct)=>dispatch(onConfirmPopup(popupAct)),
+        onCancel:(confirm)=>dispatch(actions.confirmPopup(confirm))
     }
 };
 
-const Popup:React.FC<Props> = ({isShown, message, popupAct,onConfirm}) => {
-   const containerVisibility = !isShown ? style.show : style.hide;
+const Popup:React.FC<Props> = ({isShown, message, popupAct,onConfirm, onCancel}) => {
+   const containerVisibility = isShown ? style.show : style.hide;
     return (
         <div className={containerVisibility}>
             {message}
-            <button onClick={()=>onConfirm(popupAct)}>OK</button>
-            <button>CANCEL</button>
+            <Button theme={'primary'} callback={()=>onConfirm(popupAct)}>OK</Button>
+            <Button theme={'danger'} callback={()=>onCancel(false)}>CANCEL</Button>
         </div>
     )
-}
+};
 
 export default connect(mapStateToProps,mapDispatchToProps)(Popup);
