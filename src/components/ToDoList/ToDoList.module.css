@@ -1,0 +1,37 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
+}
+.todos__head {
+  border-bottom: 2px solid #764abc;
+}
+
+.todos__list {
+
+}
+
+.todos__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.todos__body {
+  display: flex;
+}
+
+.todos__id {
+
+}
+
+.todos__title {
+  margin: 0 20px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
