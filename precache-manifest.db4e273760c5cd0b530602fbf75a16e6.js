@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e7c87a61478ee434fe72042eb95c07f4",
+    "revision": "028110e94e4548038509476e38c8c289",
     "url": "/React_Redux_TS_To-do/index.html"
   },
   {
@@ -8,24 +8,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React_Redux_TS_To-do/static/css/3.0703f7b0.chunk.css"
   },
   {
-    "revision": "f8d9b0bdba2e941f41de",
+    "revision": "14d5a81dd58b59d22113",
     "url": "/React_Redux_TS_To-do/static/css/main.ab6e647e.chunk.css"
   },
   {
-    "revision": "f97e0d30fb165de22a4a",
-    "url": "/React_Redux_TS_To-do/static/js/2.8e153f3b.chunk.js"
+    "revision": "cf4aeb20d9cb74198a3c",
+    "url": "/React_Redux_TS_To-do/static/js/2.aa8f7417.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/React_Redux_TS_To-do/static/js/2.8e153f3b.chunk.js.LICENSE.txt"
+    "url": "/React_Redux_TS_To-do/static/js/2.aa8f7417.chunk.js.LICENSE.txt"
   },
   {
     "revision": "142a6afde4e4346f97ea",
     "url": "/React_Redux_TS_To-do/static/js/3.1e92fec7.chunk.js"
   },
   {
-    "revision": "f8d9b0bdba2e941f41de",
-    "url": "/React_Redux_TS_To-do/static/js/main.06db80da.chunk.js"
+    "revision": "14d5a81dd58b59d22113",
+    "url": "/React_Redux_TS_To-do/static/js/main.d2005dde.chunk.js"
   },
   {
     "revision": "bcf2a75bb8591923f035",
